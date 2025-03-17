@@ -7,6 +7,7 @@ export default function Home() {
   const [currentCardIndex, setCurrentCardIndex] = useState(null);
   const [startTime, setStartTime] = useState(null);
   const [elapsedTime, setElapsedTime] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
     if (startTime) {
@@ -17,21 +18,61 @@ export default function Home() {
     }
   }, [startTime]);
 
+  // Add keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (currentCardIndex === null) return;
+      
+      switch (e.key) {
+        case 'ArrowLeft':
+          if (currentCardIndex > 0) {
+            setCurrentCardIndex(currentCardIndex - 1);
+            setIsFlipped(false);
+          } else if (currentCardIndex === 0) {
+            resetSession();
+          }
+          break;
+        case 'ArrowRight':
+        case 'Enter':
+          if (currentCardIndex < flashcards.length - 1) {
+            setCurrentCardIndex(currentCardIndex + 1);
+            setIsFlipped(false);
+          } else if (currentCardIndex === flashcards.length - 1) {
+            setCurrentCardIndex(flashcards.length);
+            setStartTime(null);
+          }
+          break;
+        case ' ': // Space key
+          e.preventDefault(); // Prevent page scrolling
+          if (!isFinished) {
+            setIsFlipped(!isFlipped);
+          }
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentCardIndex, isFlipped]);
+
   const startSession = () => {
     setStartTime(Date.now());
     setCurrentCardIndex(0);
     setElapsedTime(0);
+    setIsFlipped(false);
   };
 
   const resetSession = () => {
     setStartTime(null);
     setCurrentCardIndex(null);
     setElapsedTime(0);
+    setIsFlipped(false);
   };
 
   const nextCard = () => {
     if (currentCardIndex < flashcards.length - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
+      setIsFlipped(false);
     } else if (currentCardIndex === flashcards.length - 1) {
       setCurrentCardIndex(flashcards.length);
       setStartTime(null);
@@ -41,6 +82,7 @@ export default function Home() {
   const previousCard = () => {
     if (currentCardIndex > 0) {
       setCurrentCardIndex(currentCardIndex - 1);
+      setIsFlipped(false);
     } else if (currentCardIndex === 0) {
       resetSession();
     }
@@ -92,6 +134,8 @@ export default function Home() {
                 <FlashCard 
                   card={flashcards[currentCardIndex]} 
                   isActive={true}
+                  isFlipped={isFlipped}
+                  onFlip={() => setIsFlipped(!isFlipped)}
                 />
               </div>
 
@@ -102,6 +146,9 @@ export default function Home() {
                 >
                   {currentCardIndex === 0 ? 'Reset' : 'Previous'}
                 </button>
+                <div className="text-sm text-gray-500">
+                  Use ←/→ to navigate • Space to flip • Enter for next
+                </div>
                 <button
                   onClick={nextCard}
                   className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"

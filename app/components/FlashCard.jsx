@@ -1,22 +1,14 @@
 'use client';
-import { useState, useEffect } from 'react';
 import MarkdownRenderer from './MarkdownRenderer';
 
-export default function FlashCard({ card, isActive }) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  // Reset flip state whenever card changes
-  useEffect(() => {
-    setIsFlipped(false);
-  }, [card.id]);
-
+export default function FlashCard({ card, isActive, isFlipped, onFlip }) {
   if (!isActive) return null;
 
   return (
     <div className="h-full flex">
       <div 
         className="w-full cursor-pointer perspective-1000"
-        onClick={() => setIsFlipped(!isFlipped)}
+        onClick={onFlip}
       >
         <div className={`h-full relative transform-gpu transition-transform duration-700 transform-style-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
           {/* Front of card */}
