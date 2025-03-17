@@ -1,8 +1,8 @@
 export const flashcards = [
   {
     id: 1,
-    title: "Opening Tone",
-    front: "Dry opening",
+    title: "Opening",
+    front: "I could stand up here...",
     back: `[DRY, SERIOUS, PRETEND TO BE A MORON]
 
 I could stand up here,
@@ -13,7 +13,7 @@ But no one wants to hear that… Especially on their wedding day…`
   {
     id: 2,
     title: "Introduction",
-    front: "Introduce yourself",
+    front: "Introduce myself, it's an honour...",
     back: `Good evening. everyone. I'm Leon, the best friend of the groom… For now.
 
 It's an honour to be here.`
@@ -21,7 +21,7 @@ It's an honour to be here.`
   {
     id: 3,
     title: "Speech Rules",
-    front: "Three rules",
+    front: "Aim of a speech, choose one, let's begin...",
     back: `I've always understood the aim of a speech like this is to:
 
 * Be kind
@@ -37,7 +37,7 @@ So, with a heavy heart, let us begin…`
   {
     id: 4,
     title: "Competition Setup",
-    front: "Competing with me and cv",
+    front: "Competing with you, job, Alex's CV...",
     back: `The most annoying thing about being Alex's best friend is that he is always competing with you.
 
 * When we were 18, I got him a job at a cocktail bar where I worked.
@@ -61,7 +61,7 @@ If you take a look at Alex's CV, you'll notice it's written in size 72 bold font
   {
     id: 7,
     title: "Pandemic Work",
-    front: "Mental age joke, pandemic work",
+    front: "Years advance, mental age joke, pandemic work...",
     back: `[QUICK, WITTY]
 Moving forwards, the years advance. Unfortunately, Alex's mental age didn't…
 
@@ -77,7 +77,7 @@ I was trying to capture the tranquillity of an office, and Alex thought he was s
   {
     id: 9,
     title: "Change Coming: Footsteps Story",
-    front: "Something changed: New footsteps",
+    front: "Something changed, 2AM Doof, new footsteps, something weird afoot, Alex tricked someone into liking him",
     back: `But towards the tail end of the pandemic, when things started to open up, something changed.
 
 The thing about living with Alex, is that he tends to walk quite flat footed:
@@ -120,7 +120,7 @@ Nobel Prizes have been given out for less.`
   {
     id: 14,
     title: "Being Crap",
-    front: "Both being crap, Alex's nature",
+    front: "Reminder of the remit, truth, Alex suffers me, Alex ready to go again, Alex is a true force of nature",
     back: `So, if I've ripped into Alex for being a bit crap, I would like to remind you all of my remit in this speech: Telling the truth.
 
 And, this truth extends further.
@@ -134,7 +134,7 @@ Alex is a true force of nature. Nothing gets him down - unless arsenal loses - a
   {
     id: 16,
     title: "Final Truth",
-    front: "Separate paths, tie back to joint steps",
+    front: "Truth is: Really tight growing up, separate paths, that's okay, call back to 2AM joint steps",
     back: `[EMPHASIS ON TRUTH NOW]
 The truth is, me and Alex were really tight growing up, and my feeling is that over time life has taken us down separate paths.
 
@@ -145,7 +145,7 @@ Those joint steps that I heard at 2AM all those years ago have led them here tod
   {
     id: 17,
     title: "Toast",
-    front: "Final toast",
+    front: "Love you both, honoured to call you friends, enjoy yourselves, have enormous amounts of fun together, toast",
     back: `Alex, Alex… I love you both and I'm honoured to call you friends.
 
 And whilst I'm in no position to offer you advice, I simply wish that you enjoy yourselves and have enormous amounts of fun together.
