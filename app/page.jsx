@@ -141,7 +141,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="h-[calc(100vh-9rem)]">
+              <div className="h-[calc(100dvh-9rem)]">
                 <FlashCard 
                   card={flashcards[currentCardIndex]} 
                   isActive={true}

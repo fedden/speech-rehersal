@@ -14,10 +14,18 @@ body {
 
 /* Add these new styles */
 .flashcard-container {
-  height: 100vh;
-  max-height: 100vh;
+  height: 100dvh;  /* dynamic viewport height */
+  max-height: 100dvh;
   padding: 1rem;
   overflow: hidden;
+}
+
+/* Fallback for browsers that don't support dvh */
+@supports not (height: 100dvh) {
+  .flashcard-container {
+    height: -webkit-fill-available;
+    max-height: -webkit-fill-available;
+  }
 }
 
 .card-section {
