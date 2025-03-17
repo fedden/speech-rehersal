@@ -10,4 +10,35 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+}
+
+/* Add these new styles */
+.flashcard-container {
+  height: 100vh;
+  max-height: 100vh;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.card-section {
+  height: 100%;
+}
+
+.card {
+  height: 100%;
+}
+
+.button-section {
+  flex-shrink: 0;
+}
+
+.keyboard-help {
+  margin-top: 0.5rem;
+}
+
+/* Hide keyboard help on small screens */
+@media (max-height: 600px), (max-width: 640px) {
+  .keyboard-help {
+    display: none;
+  }
 } 

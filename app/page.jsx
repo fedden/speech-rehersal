@@ -3,6 +3,17 @@ import { useState, useEffect } from 'react';
 import { flashcards } from './data/flashcards';
 import FlashCard from './components/FlashCard';
 
+function formatTime(seconds) {
+  if (seconds < 60) {
+    return `${seconds}s`;
+  }
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return remainingSeconds === 0 
+    ? `${minutes}m` 
+    : `${minutes}m ${remainingSeconds}s`;
+}
+
 export default function Home() {
   const [currentCardIndex, setCurrentCardIndex] = useState(null);
   const [startTime, setStartTime] = useState(null);
@@ -91,9 +102,9 @@ export default function Home() {
   const isFinished = currentCardIndex === flashcards.length;
 
   return (
-    <main className="min-h-screen h-screen flex flex-col bg-gray-50">
-      <div className="flex-1 p-4 md:p-8 flex flex-col">
-        <div className="max-w-4xl w-full mx-auto flex-1 flex flex-col">
+    <div className="flashcard-container">
+      <div className="card-section">
+        <div className="card">
           {currentCardIndex === null ? (
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
@@ -110,7 +121,7 @@ export default function Home() {
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <h2 className="text-3xl font-bold mb-4">Session Complete!</h2>
-                <p className="text-xl text-gray-600 mb-8">Final Time: {elapsedTime}s</p>
+                <p className="text-xl text-gray-600 mb-8">Final Time: {formatTime(elapsedTime)}</p>
                 <button
                   onClick={startSession}
                   className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
@@ -120,17 +131,17 @@ export default function Home() {
               </div>
             </div>
           ) : (
-            <div className="flex-1 flex flex-col min-h-0">
-              <div className="flex justify-between items-center mb-6">
+            <div className="h-full flex flex-col">
+              <div className="h-12 flex justify-between items-center mb-4">
                 <div className="text-gray-600">
                   Card {currentCardIndex + 1} of {flashcards.length}
                 </div>
                 <div className="text-gray-600">
-                  Time: {elapsedTime}s
+                  Time: {formatTime(elapsedTime)}
                 </div>
               </div>
 
-              <div className="flex-1 min-h-0">
+              <div className="h-[calc(100vh-9rem)]">
                 <FlashCard 
                   card={flashcards[currentCardIndex]} 
                   isActive={true}
@@ -139,27 +150,29 @@ export default function Home() {
                 />
               </div>
 
-              <div className="flex justify-between items-center mt-6">
-                <button
-                  onClick={previousCard}
-                  className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
-                >
-                  {currentCardIndex === 0 ? 'Reset' : 'Previous'}
-                </button>
-                <div className="text-sm text-gray-500">
-                  Use ←/→ to navigate • Space to flip • Enter for next
+              <div className="h-16 mt-4">
+                <div className="flex justify-between items-center">
+                  <button
+                    onClick={previousCard}
+                    className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
+                  >
+                    {currentCardIndex === 0 ? 'Reset' : 'Previous'}
+                  </button>
+                  <div className="keyboard-help text-sm text-gray-500">
+                    Use ←/→ to navigate • Space to flip • Enter for next
+                  </div>
+                  <button
+                    onClick={nextCard}
+                    className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
+                  >
+                    {currentCardIndex === flashcards.length - 1 ? 'Complete' : 'Next'}
+                  </button>
                 </div>
-                <button
-                  onClick={nextCard}
-                  className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
-                >
-                  {currentCardIndex === flashcards.length - 1 ? 'Complete' : 'Next'}
-                </button>
               </div>
             </div>
           )}
         </div>
       </div>
-    </main>
+    </div>
   );
 } 
