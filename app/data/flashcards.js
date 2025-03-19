@@ -1,8 +1,7 @@
 export const flashcards = [
   {
-    id: 1,
     title: "Opening",
-    front: "I could stand up here...",
+    front: `I could stand up here...`,
     back: `[DRY, SERIOUS, PRETEND TO BE A MORON]
 
 I could stand up here,
@@ -11,17 +10,18 @@ Long pause
 But no one wants to hear that… Especially on their wedding day…`
   },
   {
-    id: 2,
     title: "Introduction",
-    front: "Introduce myself, it's an honour...",
+    front: `Introduce myself, it's an honour...`,
     back: `Good evening. everyone. I'm Leon, the best friend of the groom… For now.
 
 It's an honour to be here.`
   },
   {
-    id: 3,
     title: "Speech Rules",
-    front: "Aim of a speech, choose one, let's begin...",
+    front: `- Aim of a speech
+- Kind, entertaining, or truth
+- Choose one
+- Heavy heart, let's begin...`,
     back: `I've always understood the aim of a speech like this is to:
 
 * Be kind
@@ -35,9 +35,10 @@ I'm afraid, Alex, I've opted for the T-word… the truth.
 So, with a heavy heart, let us begin…`
   },
   {
-    id: 4,
     title: "Competition Setup",
-    front: "Competing with you, job, Alex's CV...",
+    front: `- Competing with you
+- Job
+- Alex's CV`,
     back: `The most annoying thing about being Alex's best friend is that he is always competing with you.
 
 * When we were 18, I got him a job at a cocktail bar where I worked.
@@ -48,9 +49,10 @@ So, with a heavy heart, let us begin…`
 If you take a look at Alex's CV, you'll notice it's written in size 72 bold font and just says the word "Legend"`
   },
   {
-    id: 6,
     title: "Arguments",
-    front: "Different views",
+    front: `- Over silly things like that and in general we argue
+- Alex pushed me to see differently
+- A view that is refreshingly…`,
     back: `And it's over silly things like that, and in general it's no surprise that growing up, Alex and I argued a lot.
 
 * But I always felt that Alex has pushed me to see the world from a different point of view…
@@ -59,9 +61,10 @@ If you take a look at Alex's CV, you'll notice it's written in size 72 bold font
 * Moronic.`
   },
   {
-    id: 7,
     title: "Pandemic Work",
-    front: "Years advance, mental age joke, pandemic work...",
+    front: `- Years advance, mental age joke
+- Pandemic story
+- Wolf of Wall Street`,
     back: `[QUICK, WITTY]
 Moving forwards, the years advance. Unfortunately, Alex's mental age didn't…
 
@@ -75,9 +78,12 @@ During the Covid pandemic, Alex lived with me and my partner in London.
 I was trying to capture the tranquillity of an office, and Alex thought he was starring in The Wolf of Wall Street.`
   },
   {
-    id: 9,
     title: "Change Coming: Footsteps Story",
-    front: "Something changed, 2AM Doof, new footsteps, something weird afoot, Alex tricked someone into liking him",
+    front: `- Something changed
+- 2AM Doof
+- New footsteps
+- Something weird afoot
+- Alex tricked someone into liking him`,
     back: `But towards the tail end of the pandemic, when things started to open up, something changed.
 
 The thing about living with Alex, is that he tends to walk quite flat footed:
@@ -90,9 +96,10 @@ That's when I knew—something weird was, literally, afoot…
 Alex had tricked someone into liking him.`
   },
   {
-    id: 11,
     title: "Alexandra Qualities",
-    front: "Not just anyone, getting to know her, building Alex up",
+    front: `- Not just anyone -> opposite sex -> not just... -> bestowed with qualities
+- Getting to know her...
+- She has built Alex up`,
     back: `And not just anyone.
 A member of the opposite sex.
 And not just any member of the opposite sex…
@@ -108,7 +115,6 @@ We are all here because we loved Alex before he met Alexandra, but undeniably, s
 Nobel Prizes have been given out for less.`
   },
   {
-    id: 13,
     title: "Parents",
     front: "To the parents",
     back: `So Congratulations to Mr and Mrs Reeves for raising such a fantastic daughter
@@ -118,9 +124,12 @@ Nobel Prizes have been given out for less.`
 * Well, you did your best with what you had to work with.`
   },
   {
-    id: 14,
     title: "Being Crap",
-    front: "Reminder of the remit, truth, Alex suffers me, Alex ready to go again, Alex is a true force of nature",
+    front: `- If I have ripped into alex too much: Reminder of the remit
+- Truth extends further
+- I am crap: Alex suffers me
+- Wasted x, y, z and yet Alex ready to go again
+- Alex is a true force of nature, nothing gets him down, calm and collected`,
     back: `So, if I've ripped into Alex for being a bit crap, I would like to remind you all of my remit in this speech: Telling the truth.
 
 And, this truth extends further.
@@ -132,9 +141,12 @@ To abbreviate decades, I've wasted his time, patience, money – and much else -
 Alex is a true force of nature. Nothing gets him down - unless arsenal loses - and he's always been so confident and collected with everyone we meet.`
   },
   {
-    id: 16,
     title: "Final Truth",
-    front: "Truth is: Really tight growing up, separate paths, that's okay, call back to 2AM joint steps",
+    front: `- Truth is:
+- Really tight growing up
+- Separate paths
+- That's okay because...
+- Call back to 2AM joint steps - they will lead them onwards to a fulfilling and joyful married life`,
     back: `[EMPHASIS ON TRUTH NOW]
 The truth is, me and Alex were really tight growing up, and my feeling is that over time life has taken us down separate paths.
 
@@ -143,9 +155,12 @@ And that's okay for me, because it's clear how brilliantly Alex and Alexandra ha
 Those joint steps that I heard at 2AM all those years ago have led them here today. And I am sure they will lead them onwards to a fulfilling and joyful married life.`
   },
   {
-    id: 17,
     title: "Toast",
-    front: "Love you both, honoured to call you friends, enjoy yourselves, have enormous amounts of fun together, toast",
+    front: `- Love you both
+- Love you both & Honoured to call you friends
+- No position to offer advice
+- Enjoy yourselves & have enormous amounts of fun together
+- Toast`,
     back: `Alex, Alex… I love you both and I'm honoured to call you friends.
 
 And whilst I'm in no position to offer you advice, I simply wish that you enjoy yourselves and have enormous amounts of fun together.

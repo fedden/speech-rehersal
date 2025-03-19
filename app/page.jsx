@@ -147,6 +147,7 @@ export default function Home() {
                   isActive={true}
                   isFlipped={isFlipped}
                   onFlip={() => setIsFlipped(!isFlipped)}
+                  index={currentCardIndex}
                 />
               </div>
 
