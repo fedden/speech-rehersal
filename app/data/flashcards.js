@@ -49,18 +49,6 @@ So, with a heavy heart, let us begin…`
 If you take a look at Alex's CV, you'll notice it's written in size 72 bold font and just says the word "Legend"`
   },
   {
-    title: "Arguments",
-    front: `- Over silly things like that and in general we argue
-- Alex pushed me to see differently
-- A view that is refreshingly…`,
-    back: `And it's over silly things like that, and in general it's no surprise that growing up, Alex and I argued a lot.
-
-* But I always felt that Alex has pushed me to see the world from a different point of view…
-* A view that is refreshingly…
-* Pause.
-* Moronic.`
-  },
-  {
     title: "Pandemic Work",
     front: `- Years advance, mental age joke
 - Pandemic story
