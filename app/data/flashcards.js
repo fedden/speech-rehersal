@@ -63,7 +63,7 @@ During the Covid pandemic, Alex lived with me and my partner in London.
 * Pause
 * Blaring out Talksport, sending memes, and shouting something about deals.
 
-I was trying to capture the tranquillity of an office, and Alex thought he was starring in The Wolf of Wall Street.`
+Honestly, Alex thought he was starring in The Wolf of Wall Street.`
   },
   {
     title: "Change Coming: Footsteps Story",
