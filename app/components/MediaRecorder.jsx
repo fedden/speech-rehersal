@@ -17,7 +17,7 @@ function ClientOnly({ children }) {
   return children;
 }
 
-function VideoRecorder({ isRecording, onRecordingComplete, recordingUrl: existingUrl }) {
+function VideoRecorder({ isRecording, onRecordingComplete, recordingUrl: existingUrl, showPreview = true }) {
   const videoRef = useRef(null);
   const streamRef = useRef(null);
   const [currentUrl, setCurrentUrl] = useState(existingUrl);
@@ -204,7 +204,7 @@ function VideoRecorder({ isRecording, onRecordingComplete, recordingUrl: existin
 
   return (
     <div className="relative">
-      {isRecording && (
+      {isRecording && showPreview && (
         <div className="hidden md:block">
           <div className="absolute top-2 right-2 flex items-center z-10">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2"></div>
@@ -213,7 +213,7 @@ function VideoRecorder({ isRecording, onRecordingComplete, recordingUrl: existin
         </div>
       )}
       <div className="max-w-xs mx-auto">
-        {isRecording && (
+        {isRecording && showPreview && (
           <div className="hidden md:block">
             <video
               ref={videoRef}
@@ -224,7 +224,7 @@ function VideoRecorder({ isRecording, onRecordingComplete, recordingUrl: existin
             />
           </div>
         )}
-        {!isRecording && currentUrl && (
+        {!isRecording && currentUrl && showPreview && (
           <div>
             <video
               key={currentUrl}

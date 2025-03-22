@@ -187,6 +187,7 @@ export default function Home() {
                     isRecording={false}
                     onRecordingComplete={() => {}}
                     recordingUrl={recordingUrl}
+                    showPreview={true}
                   />
                 </div>
               )}
@@ -219,11 +220,12 @@ export default function Home() {
                     index={currentCardIndex}
                   />
                 </div>
-                <div className="md:w-64"> {/* Fixed width container for video */}
+                <div className="md:w-64">
                   <VideoRecorder 
                     isRecording={isRecording}
                     onRecordingComplete={handleRecordingComplete}
-                    recordingUrl={recordingUrl}
+                    recordingUrl={null}
+                    showPreview={true}
                   />
                 </div>
               </div>
