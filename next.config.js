@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  trailingSlash: true,
   webpack: (config, { isServer }) => {
     // Prevent loading of Worker modules during SSR
     if (isServer) {
