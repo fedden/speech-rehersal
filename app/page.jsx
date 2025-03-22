@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { flashcards } from './data/flashcards';
 import FlashCard from './components/FlashCard';
+import VideoRecorder from './components/MediaRecorder';
 
 function formatTime(seconds) {
   if (seconds < 60) {
@@ -19,6 +20,9 @@ export default function Home() {
   const [startTime, setStartTime] = useState(null);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const [recordingUrl, setRecordingUrl] = useState(null);
+  const [hasMediaPermissions, setHasMediaPermissions] = useState(false);
 
   useEffect(() => {
     if (startTime) {
@@ -66,18 +70,45 @@ export default function Home() {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [currentCardIndex, isFlipped]);
 
+  const checkMediaPermissions = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      stream.getTracks().forEach(track => track.stop());
+      setHasMediaPermissions(true);
+    } catch (err) {
+      console.error('Error checking media permissions:', err);
+      setHasMediaPermissions(false);
+    }
+  };
+
   const startSession = () => {
-    setStartTime(Date.now());
+    // Clean up any existing recording URL
+    if (recordingUrl) {
+      URL.revokeObjectURL(recordingUrl);
+    }
+
+    // Reset all states to their initial values
+    setRecordingUrl(null);
     setCurrentCardIndex(0);
+    setStartTime(Date.now());
     setElapsedTime(0);
     setIsFlipped(false);
+    setIsRecording(true);
   };
 
   const resetSession = () => {
+    // Clean up any existing recording URL
+    if (recordingUrl) {
+      URL.revokeObjectURL(recordingUrl);
+    }
+
+    // Reset all states to their initial values
     setStartTime(null);
     setCurrentCardIndex(null);
     setElapsedTime(0);
     setIsFlipped(false);
+    setIsRecording(false);
+    setRecordingUrl(null);
   };
 
   const nextCard = () => {
@@ -85,8 +116,9 @@ export default function Home() {
       setCurrentCardIndex(currentCardIndex + 1);
       setIsFlipped(false);
     } else if (currentCardIndex === flashcards.length - 1) {
-      setCurrentCardIndex(flashcards.length);
-      setStartTime(null);
+      console.log('Stopping recording...');
+      setIsRecording(false); // Stop recording first
+      // Don't proceed to the final screen yet - wait for handleRecordingComplete
     }
   };
 
@@ -101,6 +133,16 @@ export default function Home() {
 
   const isFinished = currentCardIndex === flashcards.length;
 
+  const handleRecordingComplete = (url) => {
+    console.log('Recording completed, URL:', url);
+    setRecordingUrl(url);
+    // Now we can safely proceed to the final screen
+    if (currentCardIndex === flashcards.length - 1) {
+      setCurrentCardIndex(flashcards.length);
+      setStartTime(null);
+    }
+  };
+
   return (
     <div className="flashcard-container">
       <div className="card-section">
@@ -109,26 +151,52 @@ export default function Home() {
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <h1 className="text-4xl font-bold mb-8">Speech Practice</h1>
-                <button
-                  onClick={startSession}
-                  className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  Start Session
-                </button>
+                {!hasMediaPermissions ? (
+                  <div className="space-y-4">
+                    <p className="text-gray-600 mb-4">
+                      This app needs camera and microphone access to record your practice session.
+                    </p>
+                    <button
+                      onClick={checkMediaPermissions}
+                      className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+                    >
+                      Allow Camera & Microphone
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={startSession}
+                    className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+                  >
+                    Start Session
+                  </button>
+                )}
               </div>
             </div>
           ) : isFinished ? (
-            <div className="flex-1 flex items-center justify-center">
+            <div className="flex-1 flex flex-col items-center justify-center space-y-8">
               <div className="text-center">
                 <h2 className="text-3xl font-bold mb-4">Session Complete!</h2>
                 <p className="text-xl text-gray-600 mb-8">Final Time: {formatTime(elapsedTime)}</p>
-                <button
-                  onClick={startSession}
-                  className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  Start New Session
-                </button>
               </div>
+              
+              {recordingUrl && (
+                <div className="w-full max-w-md mx-auto">
+                  <h3 className="text-xl font-semibold mb-4">Review Your Session</h3>
+                  <VideoRecorder 
+                    isRecording={false}
+                    onRecordingComplete={() => {}}
+                    recordingUrl={recordingUrl}
+                  />
+                </div>
+              )}
+
+              <button
+                onClick={startSession}
+                className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Start New Session
+              </button>
             </div>
           ) : (
             <div className="h-full flex flex-col">
@@ -141,14 +209,23 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="h-[calc(100dvh-9rem)]">
-                <FlashCard 
-                  card={flashcards[currentCardIndex]} 
-                  isActive={true}
-                  isFlipped={isFlipped}
-                  onFlip={() => setIsFlipped(!isFlipped)}
-                  index={currentCardIndex}
-                />
+              <div className="h-[calc(100dvh-9rem)] flex flex-col md:flex-row gap-4">
+                <div className="flex-1">
+                  <FlashCard 
+                    card={flashcards[currentCardIndex]} 
+                    isActive={true}
+                    isFlipped={isFlipped}
+                    onFlip={() => setIsFlipped(!isFlipped)}
+                    index={currentCardIndex}
+                  />
+                </div>
+                <div className="md:w-64"> {/* Fixed width container for video */}
+                  <VideoRecorder 
+                    isRecording={isRecording}
+                    onRecordingComplete={handleRecordingComplete}
+                    recordingUrl={recordingUrl}
+                  />
+                </div>
               </div>
 
               <div className="h-16 mt-4">
