@@ -14,6 +14,8 @@ const TinderCard = dynamic(() => import('react-tinder-card'), {
 
 export default function AffirmationsPage() {
   const [currentIndex, setCurrentIndex] = useState(affirmations.length - 1);
+  const [cards, setCards] = useState(affirmations);
+  const [hasStarted, setHasStarted] = useState(false);
   const currentIndexRef = useRef(currentIndex);
 
   const childRefs = useMemo(
@@ -37,7 +39,6 @@ export default function AffirmationsPage() {
     }
   }, []);
 
-  const canGoBack = currentIndex < affirmations.length - 1;
   const canSwipe = currentIndex >= 0;
 
   const swiped = (direction, index) => {
@@ -46,19 +47,27 @@ export default function AffirmationsPage() {
 
   const outOfFrame = (idx) => {
     console.log(`Card ${idx} left the screen!`);
+    // Remove the card from the stack
+    setCards((prev) => prev.filter((_, index) => index !== idx));
   };
 
-  const swipe = async (dir) => {
+  const swipe = async (direction = 'left') => {
     if (canSwipe && currentIndex >= 0) {
-      await childRefs[currentIndex].current.swipe(dir);
+      try {
+        await childRefs[currentIndex].current.swipe(direction);
+      } catch (error) {
+        console.error('Error swiping:', error);
+        // Manual fallback if swipe fails
+        updateCurrentIndex(currentIndex - 1);
+        setCards((prev) => prev.filter((_, index) => index !== currentIndex));
+      }
     }
   };
 
-  const goBack = async () => {
-    if (!canGoBack) return;
-    const newIndex = currentIndex + 1;
-    updateCurrentIndex(newIndex);
-    await childRefs[newIndex].current.restoreCard();
+  const startAgain = () => {
+    setCurrentIndex(affirmations.length - 1);
+    setCards(affirmations);
+    setHasStarted(true);
   };
 
   const remainingCards = currentIndex + 1;
@@ -66,34 +75,8 @@ export default function AffirmationsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white p-4">
       <div className="max-w-lg mx-auto h-full">
-        <div className="flex justify-end mb-8">
-          <div className="text-gray-600">
-            {remainingCards} card{remainingCards !== 1 ? 's' : ''} remaining
-          </div>
-        </div>
-
-        {remainingCards > 0 ? (
-          <div className="relative h-[calc(100vh-16rem)] md:h-[600px]">
-            <div className="absolute inset-0">
-              {affirmations.map((affirmation, index) => (
-                <TinderCard
-                  ref={childRefs[index]}
-                  key={affirmation.id}
-                  onSwipe={(dir) => swiped(dir, index)}
-                  onCardLeftScreen={() => outOfFrame(index)}
-                  className="swipe absolute left-0 right-0 h-full"
-                >
-                  <div className={`card bg-white h-full w-full p-8 flex flex-col justify-center items-center text-center ${index === currentIndex ? 'top-card' : ''}`}>
-                    <p className="text-xl md:text-2xl font-medium max-w-md">
-                      {affirmation.text}
-                    </p>
-                  </div>
-                </TinderCard>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="h-[calc(100vh-16rem)] overflow-y-auto">
+        {!hasStarted ? (
+          <div className="h-[calc(100vh-8rem)] overflow-y-auto pb-20">
             <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">{affirmationGuide.title}</h2>
               <ul className="space-y-4">
@@ -113,36 +96,64 @@ export default function AffirmationsPage() {
                 ))}
               </ul>
               <p className="text-gray-700 italic mt-6">{affirmationGuide.conclusion}</p>
-              <button
-                onClick={() => {
-                  setCurrentIndex(affirmations.length - 1);
-                }}
-                className="w-full mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                Start Again
-              </button>
             </div>
           </div>
+        ) : (
+          <>
+            <div className="flex justify-end mb-8">
+              <div className="text-gray-600">
+                {remainingCards} card{remainingCards !== 1 ? 's' : ''} remaining
+              </div>
+            </div>
+
+            <div className="relative h-[calc(100vh-16rem)] md:h-[600px]">
+              <div className="absolute inset-0">
+                {cards.map((affirmation, index) => (
+                  <TinderCard
+                    ref={childRefs[index]}
+                    key={affirmation.id}
+                    onSwipe={(dir) => swiped(dir, index)}
+                    onCardLeftScreen={() => outOfFrame(index)}
+                    className="swipe absolute left-0 right-0 h-full"
+
+                  >
+                    <div className={`card bg-white h-full w-full p-8 flex flex-col justify-center items-center text-center ${index === currentIndex ? 'top-card' : ''}`}>
+                      <p className="text-xl md:text-2xl font-medium max-w-md">
+                        {affirmation.text}
+                      </p>
+                    </div>
+                  </TinderCard>
+                ))}
+              </div>
+            </div>
+          </>
         )}
 
-        {remainingCards > 0 && (
-          <div className="button-section fixed bottom-0 left-0 right-0 p-4 flex justify-center space-x-4 bg-white/80 backdrop-blur-sm">
+        <div className="button-section fixed bottom-0 left-0 right-0 p-4 flex justify-center space-x-4 bg-white/80 backdrop-blur-sm">
+          {!hasStarted ? (
+            <button
+              onClick={startAgain}
+              className="px-6 py-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+            >
+              Start Affirmations
+            </button>
+          ) : remainingCards > 0 ? (
             <button
               className="px-6 py-3 rounded-full bg-blue-500 text-white disabled:opacity-50"
-              onClick={() => swipe('left')}
+              onClick={swipe}
               disabled={!canSwipe}
             >
               Next
             </button>
+          ) : (
             <button
-              className="px-6 py-3 rounded-full bg-gray-500 text-white disabled:opacity-50"
-              onClick={() => goBack()}
-              disabled={!canGoBack}
+              onClick={startAgain}
+              className="px-6 py-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors"
             >
-              Back
+              Start Again
             </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
