@@ -116,9 +116,14 @@ export default function Home() {
       setCurrentCardIndex(currentCardIndex + 1);
       setIsFlipped(false);
     } else if (currentCardIndex === flashcards.length - 1) {
-      console.log('Stopping recording...');
-      setIsRecording(false); // Stop recording first
-      // Don't proceed to the final screen yet - wait for handleRecordingComplete
+      console.log('Transitioning to final view...');
+      // Stop recording first
+      setIsRecording(false);
+      // Then transition to finished state after a short delay
+      setTimeout(() => {
+        setCurrentCardIndex(flashcards.length);
+        setStartTime(null);
+      }, 500);
     }
   };
 
@@ -135,12 +140,14 @@ export default function Home() {
 
   const handleRecordingComplete = (url) => {
     console.log('Recording completed, URL:', url);
+    console.log('Current state:', {
+      isFinished,
+      currentCardIndex,
+      isRecording
+    });
+    // Always set the recording URL when we get it
+    console.log('Setting recordingUrl:', url);
     setRecordingUrl(url);
-    // Now we can safely proceed to the final screen
-    if (currentCardIndex === flashcards.length - 1) {
-      setCurrentCardIndex(flashcards.length);
-      setStartTime(null);
-    }
   };
 
   return (

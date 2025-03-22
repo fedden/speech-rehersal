@@ -26,6 +26,18 @@ function VideoRecorder({ isRecording, onRecordingComplete, recordingUrl: existin
   const [isInitialized, setIsInitialized] = useState(false);
   const mediaRecorderRef = useRef(null);
 
+  // Debug logging for props and state
+  useEffect(() => {
+    console.log('VideoRecorder state:', {
+      isRecording,
+      existingUrl,
+      currentUrl,
+      showPreview,
+      hasBlob: !!recordingBlob,
+      isInitialized
+    });
+  }, [isRecording, existingUrl, currentUrl, showPreview, recordingBlob, isInitialized]);
+
   // Get supported MIME type
   const getSupportedMimeType = () => {
     const types = [
@@ -162,8 +174,9 @@ function VideoRecorder({ isRecording, onRecordingComplete, recordingUrl: existin
 
   // Handle existing URL updates
   useEffect(() => {
+    console.log('Handling existingUrl update:', existingUrl);
     if (existingUrl) {
-      console.log('Setting existing URL:', existingUrl);
+      console.log('Setting currentUrl to:', existingUrl);
       setCurrentUrl(existingUrl);
     }
   }, [existingUrl]);
