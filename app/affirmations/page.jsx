@@ -1,7 +1,16 @@
 'use client';
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { affirmations, affirmationGuide } from '../data/affirmations';
-import TinderCard from 'react-tinder-card';
+import dynamic from 'next/dynamic';
+
+const TinderCard = dynamic(() => import('react-tinder-card'), {
+  ssr: false,
+  loading: () => (
+    <div className="card bg-white h-full w-full p-8 flex flex-col justify-center items-center text-center">
+      <p className="text-gray-500">Loading...</p>
+    </div>
+  ),
+});
 
 export default function AffirmationsPage() {
   const [currentIndex, setCurrentIndex] = useState(affirmations.length - 1);
