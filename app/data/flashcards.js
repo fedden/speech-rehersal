@@ -144,8 +144,7 @@ Those joint steps that I heard at 2AM all those years ago have led them here tod
   },
   {
     title: "Toast",
-    front: `- Love you both
-- Love you both & Honoured to call you friends
+    front: `- Love you both & honoured to call you friends
 - No position to offer advice
 - Enjoy yourselves & have enormous amounts of fun together
 - Toast`,
