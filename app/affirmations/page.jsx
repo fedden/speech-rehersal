@@ -84,33 +84,35 @@ export default function AffirmationsPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">{affirmationGuide.title}</h2>
-            <ul className="space-y-4">
-              {affirmationGuide.steps.map((step, index) => (
-                typeof step === 'string' ? (
-                  <li key={index} className="text-gray-700">• {step}</li>
-                ) : (
-                  <li key={index} className="text-gray-700">
-                    <p className="font-medium">• {step.title}</p>
-                    <ul className="ml-6 mt-2 space-y-2">
-                      {step.items.map((item, i) => (
-                        <li key={i}>◦ {item}</li>
-                      ))}
-                    </ul>
-                  </li>
-                )
-              ))}
-            </ul>
-            <p className="text-gray-700 italic mt-6">{affirmationGuide.conclusion}</p>
-            <button
-              onClick={() => {
-                setCurrentIndex(affirmations.length - 1);
-              }}
-              className="w-full mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
-            >
-              Start Again
-            </button>
+          <div className="h-[calc(100vh-16rem)] overflow-y-auto">
+            <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">{affirmationGuide.title}</h2>
+              <ul className="space-y-4">
+                {affirmationGuide.steps.map((step, index) => (
+                  typeof step === 'string' ? (
+                    <li key={index} className="text-gray-700">• {step}</li>
+                  ) : (
+                    <li key={index} className="text-gray-700">
+                      <p className="font-medium">• {step.title}</p>
+                      <ul className="ml-6 mt-2 space-y-2">
+                        {step.items.map((item, i) => (
+                          <li key={i}>◦ {item}</li>
+                        ))}
+                      </ul>
+                    </li>
+                  )
+                ))}
+              </ul>
+              <p className="text-gray-700 italic mt-6">{affirmationGuide.conclusion}</p>
+              <button
+                onClick={() => {
+                  setCurrentIndex(affirmations.length - 1);
+                }}
+                className="w-full mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Start Again
+              </button>
+            </div>
           </div>
         )}
 
