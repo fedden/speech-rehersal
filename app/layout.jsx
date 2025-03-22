@@ -1,14 +1,20 @@
 import './globals.css'
+import Navigation from './components/Navigation'
 
 export const metadata = {
-  title: 'My Next.js Site',
-  description: 'Created with Next.js and Tailwind CSS',
+  title: 'Speech Practice',
+  description: 'Practice your speech with confidence',
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Navigation />
+        <main className="pt-16">
+          {children}
+        </main>
+      </body>
     </html>
   )
 } 

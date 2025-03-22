@@ -151,115 +151,113 @@ export default function Home() {
   };
 
   return (
-    <div className="flashcard-container">
-      <div className="card-section">
-        <div className="card">
-          {currentCardIndex === null ? (
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-center">
-                <h1 className="text-4xl font-bold mb-8">Speech Practice</h1>
-                {!hasMediaPermissions ? (
-                  <div className="space-y-4">
-                    <p className="text-gray-600 mb-4">
-                      This app needs camera and microphone access to record your practice session.
-                    </p>
-                    <button
-                      onClick={checkMediaPermissions}
-                      className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
-                    >
-                      Allow Camera & Microphone
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={startSession}
-                    className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
-                  >
-                    Start Session
-                  </button>
-                )}
+    <div className="main-container">
+      {currentCardIndex === null ? (
+        <div className="h-full flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-8">Speech Practice</h1>
+            {!hasMediaPermissions ? (
+              <div className="space-y-4">
+                <p className="text-gray-600 mb-4">
+                  This app needs camera and microphone access to record your practice session.
+                </p>
+                <button
+                  onClick={checkMediaPermissions}
+                  className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+                >
+                  Allow Camera & Microphone
+                </button>
               </div>
-            </div>
-          ) : isFinished ? (
-            <div className="flex-1 flex flex-col items-center justify-center space-y-8">
-              <div className="text-center">
-                <h2 className="text-3xl font-bold mb-4">Session Complete!</h2>
-                <p className="text-xl text-gray-600 mb-8">Final Time: {formatTime(elapsedTime)}</p>
+            ) : (
+              <div className="space-y-4">
+                <button
+                  onClick={startSession}
+                  className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+                >
+                  Start Session
+                </button>
               </div>
-              
-              {recordingUrl && (
-                <div className="w-full max-w-md mx-auto">
-                  <h3 className="text-xl font-semibold mb-4">Review Your Session</h3>
-                  <VideoRecorder 
-                    isRecording={false}
-                    onRecordingComplete={() => {}}
-                    recordingUrl={recordingUrl}
-                    showPreview={true}
-                  />
-                </div>
-              )}
-
-              <button
-                onClick={startSession}
-                className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                Start New Session
-              </button>
-            </div>
-          ) : (
-            <div className="h-full flex flex-col">
-              <div className="h-12 flex justify-between items-center mb-4">
-                <div className="text-gray-600">
-                  Card {currentCardIndex + 1} of {flashcards.length}
-                </div>
-                <div className="text-gray-600">
-                  Time: {formatTime(elapsedTime)}
-                </div>
-              </div>
-
-              <div className="h-[calc(100dvh-9rem)] flex flex-col md:flex-row gap-4">
-                <div className="flex-1">
-                  <FlashCard 
-                    card={flashcards[currentCardIndex]} 
-                    isActive={true}
-                    isFlipped={isFlipped}
-                    onFlip={() => setIsFlipped(!isFlipped)}
-                    index={currentCardIndex}
-                  />
-                </div>
-                <div className="md:w-64">
-                  <VideoRecorder 
-                    isRecording={isRecording}
-                    onRecordingComplete={handleRecordingComplete}
-                    recordingUrl={null}
-                    showPreview={true}
-                  />
-                </div>
-              </div>
-
-              <div className="h-16 mt-4">
-                <div className="flex justify-between items-center">
-                  <button
-                    onClick={previousCard}
-                    className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
-                  >
-                    {currentCardIndex === 0 ? 'Reset' : 'Previous'}
-                  </button>
-                  <div className="keyboard-help text-sm text-gray-500">
-                    Use ←/→ to navigate • Space to flip • Enter for next
-                  </div>
-                  <button
-                    onClick={nextCard}
-                    className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
-                  >
-                    {currentCardIndex === flashcards.length - 1 ? 'Complete' : 'Next'}
-                  </button>
-                </div>
-              </div>
+            )}
+          </div>
+        </div>
+      ) : isFinished ? (
+        <div className="h-full flex flex-col items-center justify-center space-y-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4">Session Complete!</h2>
+            <p className="text-xl text-gray-600 mb-8">Final Time: {formatTime(elapsedTime)}</p>
+          </div>
+          
+          {recordingUrl && (
+            <div className="w-full max-w-md mx-auto">
+              <h3 className="text-xl font-semibold mb-4">Review Your Session</h3>
+              <VideoRecorder 
+                isRecording={false}
+                onRecordingComplete={() => {}}
+                recordingUrl={recordingUrl}
+                showPreview={true}
+              />
             </div>
           )}
+
+          <button
+            onClick={startSession}
+            className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            Start New Session
+          </button>
         </div>
-      </div>
+      ) : (
+        <>
+          <div className="header-section flex justify-between items-center">
+            <div className="text-gray-600">
+              Card {currentCardIndex + 1} of {flashcards.length}
+            </div>
+            <div className="text-gray-600">
+              Time: {formatTime(elapsedTime)}
+            </div>
+          </div>
+
+          <div className="content-section flex flex-col md:flex-row gap-4">
+            <div className="flex-1 min-h-0">
+              <FlashCard 
+                card={flashcards[currentCardIndex]} 
+                isActive={true}
+                isFlipped={isFlipped}
+                onFlip={() => setIsFlipped(!isFlipped)}
+                index={currentCardIndex}
+              />
+            </div>
+            <div className="md:w-64 flex-shrink-0">
+              <VideoRecorder 
+                isRecording={isRecording}
+                onRecordingComplete={handleRecordingComplete}
+                recordingUrl={null}
+                showPreview={true}
+              />
+            </div>
+          </div>
+
+          <div className="button-section">
+            <div className="flex justify-between items-center">
+              <button
+                onClick={previousCard}
+                className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
+              >
+                {currentCardIndex === 0 ? 'Reset' : 'Previous'}
+              </button>
+              <div className="keyboard-help text-sm text-gray-500">
+                Use ←/→ to navigate • Space to flip • Enter for next
+              </div>
+              <button
+                onClick={nextCard}
+                className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
+              >
+                {currentCardIndex === flashcards.length - 1 ? 'Complete' : 'Next'}
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 } 
