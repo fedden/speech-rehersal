@@ -72,11 +72,13 @@ And I saw Alex's CV when he applied for the job, it's just size 100 font, saying
   },
   {
     title: "Pandemic Work",
-    front: `- _[SLOW, MYSTERIOUS]_ Years advance _[CONSPIRATORIAL SECRET TO AUDIENCE]_ Unfortunately... Alex's mental age hasn't...
+    front: `
+_[SLOW, JEREMY CLARKSON]:_ Moving forwards, the years advance. 
+_[CONSPIRATORIAL SECRET TO AUDIENCE]:_ Unfortunately... Alex's mental age hasn't...
 - Pandemic story
 - Wolf of Wall Street`,
     back: `
-_[SLOW, MYSTERIOUS]:_ Moving forwards, the years advance. 
+_[SLOW, JEREMY CLARKSON]:_ Moving forwards, the years advance. 
 _[CONSPIRATORIAL SECRET TO AUDIENCE]:_ Unfortunately... Alex's mental age hasn't…
 
 During the Covid pandemic, Alex lived with me and my partner in London.
@@ -166,7 +168,9 @@ The truth is, me and Alex were really tight growing up, and my feeling is that o
 
 And that's okay for me, because it's clear how brilliantly Alex and Alexandra have been in creating a life filled with adventure and happiness. 
 
-Those joint steps that I heard at 2AM all those years ago have led them here today. And I am sure they will lead them onwards to a fulfilling and joyful married life.`
+Those joint footsteps that I heard at 2AM all those years ago have led them here today...
+
+And, I am sure their footsteps will lead them onwards to a fulfilling and joyful married life.`
   },
   {
     title: "Toast",
