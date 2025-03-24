@@ -3,7 +3,9 @@ import MarkdownRenderer from './MarkdownRenderer';
 
 export default function FlashCard({ card, isActive, isFlipped, onFlip, index }) {
   if (!isActive) return null;
-
+  const content = isFlipped ? card.back : card.front;
+  // Remove any leading spaces or newlines from the content.
+  const trimmedContent = content.replace(/^[\s\n]+|[\s\n]+$/g, '');
   return (
     <div className="h-full">
       <div 
@@ -20,7 +22,7 @@ export default function FlashCard({ card, isActive, isFlipped, onFlip, index }) 
           </h2>
           
           <div className="flex-1 overflow-y-auto relative">
-            <MarkdownRenderer content={isFlipped ? card.back : card.front} />
+            <MarkdownRenderer content={trimmedContent} />
           </div>
           
           <p className="text-sm text-gray-400 mt-4 relative">
