@@ -31,7 +31,7 @@ It's an honour to be here.
 - I've always understood the aim of a speech...
 - Kind, entertaining, or truth
 - But can only choose one
-- Afraid Alex, T-word.
+- Afraid Alex, opted for the T-word... The truth.
 - Heavy heart, let's begin...
 `,
     back: `
