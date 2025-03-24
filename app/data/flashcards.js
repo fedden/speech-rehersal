@@ -2,8 +2,7 @@ export const flashcards = [
   {
     title: "Opening",
     front: `I could stand up here...`,
-    back: `[DRY, SERIOUS, PRETEND TO BE A MORON]
-
+    back: `
 I could stand up here,
 and talk for hours and hours about Alex and Alex's many great qualities
 Long pause
@@ -11,18 +10,32 @@ But no one wants to hear that… Especially on their wedding day…`
   },
   {
     title: "Introduction",
-    front: `Introduce myself, it's an honour...`,
-    back: `Good evening. everyone. I'm Leon, the best friend of the groom… For now.
+    front: `
+Good evening everyone. 
 
-It's an honour to be here.`
+I'm Leon, the best friend of the groom… For now.
+
+It's an honour to be here.
+`,
+    back: `
+Good evening everyone. 
+
+I'm Leon, the best friend of the groom… For now.
+
+It's an honour to be here.
+`
   },
   {
     title: "Speech Rules",
-    front: `- Aim of a speech
+    front: `
+- I've always understood the aim of a speech...
 - Kind, entertaining, or truth
-- Choose one
-- Heavy heart, let's begin...`,
-    back: `I've always understood the aim of a speech like this is to:
+- But can only choose one
+- Afraid Alex, T-word.
+- Heavy heart, let's begin...
+`,
+    back: `
+I've always understood the aim of a speech like this is to:
 
 * Be kind
 * Be entertaining, or,
@@ -36,25 +49,35 @@ So, with a heavy heart, let us begin…`
   },
   {
     title: "Competition Setup",
-    front: `- Competing with you
-- Job
-- Alex's CV`,
-    back: `The most annoying thing about being Alex's best friend is that he is always competing with you.
+    front: `
+The most annoying thing ... always competing with you
 
-* When we were 18, I got him a job at a cocktail bar where I worked.
-* Now, I thought: "Great! My best mate is working with me. This will be fun." But three months later…
-* Pause
-* He was my manager.
+* When we were 18, I landed him a job at the cocktail bar where I was working.
+* I remember thinking: “Great, my best mate working alongside me — what could go wrong?”
+* [PAUSE]
+* _[FAST QUICK SENTANCE]_ Three months later he was my manager.
 
-If you take a look at Alex's CV, you'll notice it's written in size 72 bold font and just says the word "Legend"`
+[CONFUSED VIBE]
+And I saw Alex's CV...`,
+    back: `
+The most annoying thing about being Alex's best friend is that he is always competing with you.
+
+* When we were 18, I landed him a job at the cocktail bar where I was working.
+* I remember thinking: “Great, my best mate working alongside me — what could go wrong?”
+* [PAUSE]
+* _[FAST]_ Three months later he was my manager.
+
+[CONFUSED VIBE]
+And I saw Alex's CV when he applied for the job, it's just size 100 font, saying one word: "Legend"`
   },
   {
     title: "Pandemic Work",
-    front: `- Years advance, mental age joke
+    front: `- _[SLOW, MYSTERIOUS]_ Years advance _[CONSPIRATORIAL SECRET TO AUDIENCE]_ Unfortunately... Alex's mental age hasn't...
 - Pandemic story
 - Wolf of Wall Street`,
-    back: `[QUICK, WITTY]
-Moving forwards, the years advance. Unfortunately, Alex's mental age didn't…
+    back: `
+_[SLOW, MYSTERIOUS]:_ Moving forwards, the years advance. 
+_[CONSPIRATORIAL SECRET TO AUDIENCE]:_ Unfortunately... Alex's mental age hasn't…
 
 During the Covid pandemic, Alex lived with me and my partner in London.
 
@@ -67,11 +90,14 @@ Honestly, Alex thought he was starring in The Wolf of Wall Street.`
   },
   {
     title: "Change Coming: Footsteps Story",
-    front: `- Something changed
-- 2AM Doof
-- New footsteps
-- Something weird afoot
-- Alex tricked someone into liking him`,
+    front: `
+But towards the tail end of the pandemic, when things started to open up, something changed.
+
+The thing about living with Alex, is that he tends to walk quite flat footed:
+- 2AM used to hearing the sound... Hunter-gatherer...
+- But then... a new sound... Delicate, graceful, stealthy...
+- _[SLOW REALISATION]_ Something weird (literally) afoot...
+- _[FAST]_ Alex tricked someone into liking him`,
     back: `But towards the tail end of the pandemic, when things started to open up, something changed.
 
 The thing about living with Alex, is that he tends to walk quite flat footed:
