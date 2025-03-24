@@ -85,7 +85,7 @@ export default function AffirmationsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white p-4">
-      <div className="max-w-lg mx-auto h-full">
+      <div className="max-w-lg mx-auto h-full space-y-8">
         {!hasStarted ? (
           <div className="h-[calc(100vh-8rem)] overflow-y-auto pb-20">
             <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
@@ -140,7 +140,7 @@ export default function AffirmationsPage() {
           </>
         )}
 
-        <div className="button-section fixed bottom-0 left-0 right-0 p-4 flex justify-center space-x-4 bg-white/80 backdrop-blur-sm">
+        <div className="button-section fixed bottom-0 left-0 right-0 p-4 flex justify-center space-x-4 backdrop-blur-sm">
           {!hasStarted ? (
             <button
               onClick={startAgain}
