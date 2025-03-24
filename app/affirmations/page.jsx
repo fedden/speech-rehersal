@@ -12,6 +12,16 @@ const TinderCard = dynamic(() => import('react-tinder-card'), {
   ),
 });
 
+// Fisher-Yates shuffle algorithm
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 export default function AffirmationsPage() {
   const [currentIndex, setCurrentIndex] = useState(affirmations.length - 1);
   const [cards, setCards] = useState(affirmations);
@@ -65,8 +75,9 @@ export default function AffirmationsPage() {
   };
 
   const startAgain = () => {
-    setCurrentIndex(affirmations.length - 1);
-    setCards(affirmations);
+    const shuffledAffirmations = shuffleArray(affirmations);
+    setCurrentIndex(shuffledAffirmations.length - 1);
+    setCards(shuffledAffirmations);
     setHasStarted(true);
   };
 
