@@ -126,7 +126,9 @@ Someone as bestowed with qualities as Alexandra.
 * Pause
 * I mean, she did agree to marry Alex after all!
 
-We are all here because we loved Alex before he met Alexandra, but undeniably, she has built him up for the better as well. 
+But I think it's fair to say, that she has helped Alex to grow alot since they met - NO NOT LIKE THAT.
+
+She has helped him to find a better version of himself.
 
 Nobel Prizes have been given out for less.`
   },
