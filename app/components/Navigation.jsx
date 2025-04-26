@@ -46,6 +46,16 @@ export default function Navigation() {
             >
               In The Zone
             </Link>
+            <Link
+              href="/images"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                pathname === '/images'
+                  ? 'bg-blue-50 text-blue-700'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+            >
+              Images
+            </Link>
           </div>
         </div>
       </div>
